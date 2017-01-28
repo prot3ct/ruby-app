@@ -1,26 +1,20 @@
 class VisitsController < ApplicationController
-	
-	def index
-		@data = Visit.all
-		render :json => @data
-	end
-	
 	def create 
-		@visits = construct
-		@visits.update
+		visit = construct
+		visit.update
 	end
 	
 	def show
-		@visits = construct
-		data = {"count" => @visits.count}
+		visit = construct
+		data = {"count" => visit.count}
 		render :json => data.to_json
 	end
 	
 	def construct 
 		if !Visit.exists?(user: params[:user]) 
-			@visits = Visit.new
-			@visits.user = params[:user]
-			@visits.save
+			visit = Visit.new
+			visit.user = params[:user]
+			visit.save
 		end
 		
 		return Visit.find_by(user: params[:user])
