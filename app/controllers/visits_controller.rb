@@ -10,6 +10,11 @@ class VisitsController < ApplicationController
 		@visits.update
 	end
 	
+	def user_count
+		user = Visit.find_by(user: params[:user])
+		data = {"count" => user.count}
+	end
+
 	def show
 		@visits = construct
 		data = {"count" => @visits.count}
@@ -21,6 +26,7 @@ class VisitsController < ApplicationController
 			@visits = Visit.new
 			@visits.user = params[:user]
 			@visits.save
+			return @visits;
 		end
 		
 		return Visit.find_by(user: params[:user])
