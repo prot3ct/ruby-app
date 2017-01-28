@@ -1,4 +1,8 @@
 class VisitsController < ApplicationController
+	def index
+		render "welcome"
+	end
+
 	def create 
 		visit = construct
 		visit.update
