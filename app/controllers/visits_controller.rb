@@ -14,4 +14,14 @@ class VisitsController < ApplicationController
 		data = {"count" => @visits.count}
 		render :json => data.to_json
 	end
+
+    def construct 
+		if !Visit.exists?(user: params[:user]) 
+			@visits = Visit.new
+			@visits.user = params[:user]
+			@visits.save
+		end
+		
+		return Visit.find_by(user: params[:user])
+	end
 end
