@@ -6,22 +6,21 @@ class VisitsController < ApplicationController
 	end
 	
 	def create 
-		@visits = get_or_create(true)
+		@visits = construct
 		@visits.update
 	end
-
+	
 	def show
-		@visits = get_or_create(false)
+		@visits = construct
 		data = {"count" => @visits.count}
 		render :json => data.to_json
 	end
 	
-	def get_or_create(hasToCreate) 
-		if (!Visit.exists?(user: params[:user]) && hasToCreate) 
-			visit = Visit.new
-			visit.user = params[:user]
-			visit.save
-			return visit;
+	def construct 
+		if !Visit.exists?(user: params[:user]) 
+			@visits = Visit.new
+			@visits.user = params[:user]
+			@visits.save
 		end
 		
 		return Visit.find_by(user: params[:user])
