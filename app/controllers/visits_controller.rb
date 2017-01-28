@@ -6,6 +6,7 @@ class VisitsController < ApplicationController
 	def create 
 		visit = construct
 		visit.update
+		redirect_to '/'
 	end
 	
 	def show
