@@ -2,6 +2,16 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+    root 'visits#index'
+    
+    match '/visits',  to: 'visits#show', via: 'get'
+    match '/visits' => 'visits#create', via: :post
+	
+	#get '/visits?user=:user' => 'visits#show'
+	#post '/request' => 'visits#create'
+ 
+  
+
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
