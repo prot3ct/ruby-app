@@ -4,8 +4,8 @@ Rails.application.routes.draw do
 
     root 'visits#index'
     
-    match '/visits',  to: 'visits#show', via: 'get'
-    match '/visits' => 'visits#create', via: :post
+    get '/visits', to: 'visits#show'
+    post '/visits', to: 'visits#create'
 	
 	#get '/visits?user=:user' => 'visits#show'
 	#post '/request' => 'visits#create'
