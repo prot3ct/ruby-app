@@ -5,7 +5,9 @@ class VisitsController < ApplicationController
 	end
 	
 	def create 
+        puts 1
 		@visits = construct
+        puts @visits
 		@visits.update
 	end
 	
