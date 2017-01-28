@@ -1,5 +1,5 @@
 class Visit < ActiveRecord::Base
-    def update
+	def update
 		self.count += 1
 		self.save
 	end

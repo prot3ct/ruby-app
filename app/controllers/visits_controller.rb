@@ -1,6 +1,7 @@
 class VisitsController < ApplicationController
-    def index
-        @data = Visit.all
+	
+	def index
+		@data = Visit.all
 		render :json => @data
 	end
 	
@@ -14,8 +15,8 @@ class VisitsController < ApplicationController
 		data = {"count" => @visits.count}
 		render :json => data.to_json
 	end
-
-    def construct 
+	
+	def construct 
 		if !Visit.exists?(user: params[:user]) 
 			@visits = Visit.new
 			@visits.user = params[:user]
